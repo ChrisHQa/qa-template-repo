@@ -1,2 +1,4 @@
+# 🚀 Inicialización del Proyecto QA
+
 Leé y ejecutá:
 /agent-context/qa-agent-prompt.md

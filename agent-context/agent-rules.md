@@ -73,6 +73,7 @@ Y debe registrarse en:
 - Si un test case NO es automatizable → marcar como NA
 - Si es automatizable → debe tener referencia a Playwright
 - No crear tests automáticos sin test case previo
+- NUNCA skypear un test por falla. Los posibles estados deben ser Pass, Fail, Flaky.
 
 ---
 
