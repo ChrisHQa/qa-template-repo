@@ -40,7 +40,8 @@ Si no hay tarea activa:
 ### 2. PRE-ANÁLISIS (REGLAS)
 
 1. Verificar si existe `/docs/<modulo>-rules.dm`
-2. Si NO existe → preguntar al usuario si desea definirlas. (esperar respuesta antes de pasar a la generacion de test cases).
+2. Si NO existe → preguntar al usuario si desea definirlas. 
+(esperar respuesta antes de pasar a la generacion de test cases). [INSTRUCCIÓN INTERNA - NO MOSTRAR]
 3. Si el usuario acepta → crear archivo
 4. Si no → continuar
 
@@ -150,25 +151,27 @@ PASSWORD=123456
 El agente DEBE:
 
 * Leer el archivo existente
-* NO sobrescribir configuraciones existentes
-* Agregar únicamente:
+* NO sobrescribir configuraciones innecesariamente
+* Mantener compatibilidad con la configuración actual
 
-  - dotenv.config()
-  - baseURL desde process.env (si no existe)
-  
-```ts
-import { defineConfig } from '@playwright/test';
+- Si no existe `dotenv` → agregar:
+
 import * as dotenv from 'dotenv';
-
 dotenv.config();
 
-export default defineConfig({
-  use: {
-    baseURL: process.env.BASE_URL,
-    headless: true,
-  },
-});
-```
+- Si no existe baseURL dentro de use → agregar:
+baseURL: process.env.BASE_URL,
+
+- Si NO existe reporter → agregar:
+reporter: [
+  ['list'],
+  ['html', { open: 'never' }]
+],
+
+- Si YA existe reporter:
+* Mantener lo que ya está
+* Agregar ['html', { open: 'never' }] solo si no existe
+* NO duplicar
 
 ---
 
@@ -290,6 +293,38 @@ Actualizar:
 * Ayudar a debuggear
 
 ---
+
+### 15. OUTPUT FINAL (OBLIGATORIO)
+
+Al finalizar la automatización y ejecución:
+
+Mostrar SIEMPRE:
+
+## 📊 Resumen de ejecución
+
+- Total de test cases: X
+- Automatizados: X
+- Ejecutados: X
+- Passed: X
+- Failed: X
+- Skipped: X
+
+## 📁 Entregables generados
+
+- Test Cases: /qa/test-cases/<proyecto>/<jira-id>/test-cases.md
+- Tests: /playwright/tests/<modulo>.spec.ts
+- Traceability: /qa/traceability.md
+- Reporte: /playwright/playwright-report/index.html
+
+## 📌 Acciones disponibles
+
+- Ver reporte de ejecución
+- Revisar test cases
+- Ajustar cobertura
+
+Si el reporte no existe:
+- Informar claramente que no se generó
+- Indicar cómo generarlo correctamente
 
 ## 🚀 INICIO
 
