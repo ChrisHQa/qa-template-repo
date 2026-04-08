@@ -40,7 +40,7 @@ Si no hay tarea activa:
 ### 2. PRE-ANÁLISIS (REGLAS)
 
 1. Verificar si existe `/docs/<modulo>-rules.dm`
-2. Si NO existe → preguntar si se definen
+2. Si NO existe → preguntar al usuario si desea definirlas. (esperar respuesta antes de pasar a la generacion de test cases).
 3. Si el usuario acepta → crear archivo
 4. Si no → continuar
 
@@ -122,6 +122,7 @@ Solo si el usuario dice:
 ---
 
 ### 9. CONFIGURACIÓN DE ENTORNO (OBLIGATORIO)
+IMPORTANTE: Para solicitar los datos de configuracion esperar que el usuario apruebe o modifique los test cases.
 
 Solicitar:
 
