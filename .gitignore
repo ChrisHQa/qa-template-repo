@@ -1,0 +1,5 @@
+# Dependencies
+playwright/node_modules/
+
+# Repos under test
+repo-under-test/
