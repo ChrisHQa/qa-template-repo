@@ -201,6 +201,16 @@ webServer: {
 * 1 test por test case
 * Naming:
   `TC-<MODULO>-XXX - descripción`
+  
+* 2 Reglas para los selectores:
+* SIEMPRE usar data-testid si existe
+* NO usar clases CSS dinámicas
+* NO usar selectores por texto si no es necesario
+* Prioridad:
+  1. getByTestId
+  2. getByRole
+  3. getByLabel
+  4. fallback CSS (último recurso)
 
 ---
 
