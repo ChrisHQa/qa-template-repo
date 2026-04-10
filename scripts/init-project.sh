@@ -30,6 +30,10 @@ if [ -z "$PROJECT_NAME" ]; then
   exit 1
 fi
 
+echo ""
+echo "📦 Proyecto: $PROJECT_NAME"
+echo "⚙️ Tipo: $OPTION"
+
 # =========================
 # CREAR BASE
 # =========================

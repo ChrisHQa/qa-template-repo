@@ -4,39 +4,88 @@ Vamos a inicializar el proyecto completo.
 
 ---
 
-## Paso 1 - Datos
+## Paso 1 - Selección de proyecto
 
 Preguntar al usuario:
 
-1. Nombre del proyecto
-2. Tipo de proyecto:
-   - 1: Monorepo
-   - 2: Front + Back
-   - 3: Solo estructura
+👉 Hola QA! ¿Sobre qué proyecto vamos a realizar pruebas?
 
-Según la opción:
+Opciones:
 
-- Si 1 → pedir URL repo
-- Si 2 → pedir URL front y back
-- Si 3 → no pedir nada más
+1. Safecore BO
+2. Safecore Hub
+3. Te Corresponde
+4. TeCorresponde BO
+5. Proyecto Nuevo
 
 ---
 
-## Paso 2 - Ejecución
+## Paso 2 - Resolución automática
 
-Construir el comando usando Git Bash en Windows.
+Según la opción elegida:
+
+### 1. Safecore BO
+- OPTION = 1
+- REPO_UNICO = (pendiente definir)
+
+### 2. Safecore Hub
+- OPTION = 1
+- REPO_UNICO = https://bitbucket.org/qbkdev/safecore_hub/src/develop/
+
+### 3. Te Corresponde
+- OPTION = 1
+- REPO_UNICO = (pendiente definir)
+
+### 4. TeCorresponde BO
+- OPTION = 2
+- FRONT_REPO = https://ChristianHerbel@bitbucket.org/qbkdev/tec_front.git
+- BACK_REPO = https://ChristianHerbel@bitbucket.org/qbkdev/tec_core.git
+
+### 5. Proyecto Nuevo
+👉 Volver al flujo manual:
+
+Preguntar:
+- Nombre del proyecto
+- Tipo (1/2/3)
+- URLs según corresponda
+
+---
+
+## Paso 3 - Nombre del proyecto
+
+Definir automáticamente:
+
+- Usar el nombre de la opción elegida (ej: tecorresponde-bo)
+- Si es "Proyecto Nuevo", usar el nombre ingresado por el usuario
+
+---
+
+## Paso 4 - Ejecución
+
+Ejecutar SIEMPRE con Git Bash:
 
 ### Monorepo:
-```bash
 "C:\Program Files\Git\bin\bash.exe" ./scripts/init-project.sh "<PROJECT_NAME>" "1" "<REPO_URL>"
 
+### Front + Back:
 "C:\Program Files\Git\bin\bash.exe" ./scripts/init-project.sh "<PROJECT_NAME>" "2" "<FRONT_URL>" "<BACK_URL>"
 
+### Solo estructura:
 "C:\Program Files\Git\bin\bash.exe" ./scripts/init-project.sh "<PROJECT_NAME>" "3"
 
+---
 
-## Paso 3 - Prompt
+## Paso 5 - Prompt QA
 
 Leer y ejecutar:
 
 /agent-context/qa-agent-prompt.md
+
+---
+
+## Reglas del agente
+
+- NO pedir datos si el proyecto ya define repos
+- NO usar WSL
+- Usar SIEMPRE Git Bash
+- NO modificar URLs definidas
