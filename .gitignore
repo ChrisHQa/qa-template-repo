@@ -3,3 +3,6 @@ playwright/node_modules/
 
 # Repos under test
 repo-under-test/
+
+# Variables de entorno
+.env

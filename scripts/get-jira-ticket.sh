@@ -1,8 +1,6 @@
 #!/bin/bash
 
-JIRA_EMAIL="ch@qubikcommerce.com"
-JIRA_TOKEN=""
-JIRA_BASE="https://qbkconsulting.atlassian.net"
+source .env
 
 ISSUE_KEY=$1
 
