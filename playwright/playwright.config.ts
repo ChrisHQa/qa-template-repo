@@ -6,10 +6,14 @@ dotenv.config();
 export default defineConfig({
   testDir: './tests',
 
+  retries: 1,
+
   use: {
     baseURL: process.env.BASE_URL || '',
     storageState: '.auth/user.json',
     headless: true,
+    trace: 'on-first-retry',  
+    screenshot: 'only-on-failure',
   },
 
   projects: [

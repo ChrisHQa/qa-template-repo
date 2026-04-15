@@ -280,17 +280,48 @@ webServer: {
 
 ### 11. EJECUCIÓN
 
-Indicar:
+### 11. VALIDACIÓN DE EJECUCIÓN (OBLIGATORIO)
 
-```
+Luego de generar los tests, el agente DEBE:
+
+1. Ejecutar:
+
 npm run test
-```
 
-Si falla:
+2. Analizar el resultado
 
-* Analizar
-* Proponer fixes
-* Ajustar código
+---
+
+### SI LOS TESTS FALLAN:
+
+El agente DEBE:
+
+- Identificar causa probable:
+  * selector incorrecto
+  * login fallido
+  * URL incorrecta
+  * datos inexistentes
+
+- Proponer solución concreta
+- Ajustar el código automáticamente
+- Volver a ejecutar
+
+---
+
+### REGLA OBLIGATORIA:
+
+NO finalizar hasta lograr:
+
+✔ al menos 1 test pasando correctamente
+
+---
+
+### SI NO SE PUEDE RESOLVER:
+
+Informar claramente:
+
+- Qué falló
+- Qué necesita del usuario (ej: selector real, credenciales válidas, etc.)
 
 ---
 
