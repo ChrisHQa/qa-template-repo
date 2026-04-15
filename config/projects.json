@@ -5,12 +5,12 @@
     },
     "environments": {
       "dev": {
-        "baseUrl": "https://hub.dev-safecore.k8s.qubikcommerce.com",
+        "baseUrl": "",
         "user": "qa_safecore_bo_dev",
         "password": "$SAFECORE_BO_DEV_PASS"
       },
       "stg": {
-        "baseUrl": "https://hub.stg-safecore.k8s.qubikcommerce.com",
+        "baseUrl": "",
         "user": "qa_safecore_bo_stg",
         "password": "$SAFECORE_BO_STG_PASS"
       },
@@ -32,7 +32,7 @@
     "environments": {
       "dev": {
         "baseUrl": "https://hub.dev-safecore.k8s.qubikcommerce.com",
-        "user": "qa_hub_dev",
+        "user": "ch+hub@qubikcommerce.com",
         "password": "$HUB_DEV_PASS"
       },
       "stg": {
