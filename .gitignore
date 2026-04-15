@@ -1,6 +1,10 @@
 # Dependencies
 playwright/node_modules/
 
+#Playwright
+playwright/.auth/
+playwright/.env
+
 # Repos under test
 repo-under-test/
 

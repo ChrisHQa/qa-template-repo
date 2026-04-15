@@ -159,6 +159,79 @@ fi
 mkdir -p tests
 mkdir -p fixtures
 
+# =========================
+# PLAYWRIGHT BASE CONFIG
+# =========================
+
+echo "⚙️ Creando configuración base de Playwright..."
+
+# Crear carpeta auth
+mkdir -p .auth
+
+# Crear playwright.config.ts si no existe
+if [ ! -f "playwright.config.ts" ]; then
+cat <<EOL > playwright.config.ts
+import { defineConfig } from '@playwright/test';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+export default defineConfig({
+  testDir: './tests',
+
+  use: {
+    baseURL: process.env.BASE_URL,
+    storageState: 'playwright/.auth/user.json',
+    headless: true
+  },
+
+  projects: [
+    {
+      name: 'setup',
+      testMatch: /.*\\.setup\\.ts/,
+    },
+    {
+      name: 'tests',
+      dependencies: ['setup'],
+    },
+  ],
+
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }]
+  ],
+});
+EOL
+fi
+
+# Crear auth.setup.ts si no existe
+if [ ! -f "tests/auth.setup.ts" ]; then
+cat <<EOL > tests/auth.setup.ts
+import { test as setup } from '@playwright/test';
+
+const authFile = 'playwright/.auth/user.json';
+
+setup('login y guardar sesión', async ({ page }) => {
+  const baseURL = process.env.BASE_URL!;
+  const user = process.env.USER!;
+  const password = process.env.PASSWORD!;
+
+  await page.goto(baseURL);
+
+  // Ajustar selectores según proyecto
+  await page.getByLabel('Usuario').fill(user);
+  await page.getByLabel('Password').fill(password);
+  await page.getByRole('button', { name: /login/i }).click();
+
+  await page.waitForLoadState('networkidle');
+
+  await page.context().storageState({ path: authFile });
+});
+EOL
+fi
+
+echo "✅ Configuración base de Playwright creada"
+
 if [ ! -f "tests/example.spec.ts" ]; then
   echo "🧪 Creando test de ejemplo..."
   cat <<EOL > tests/example.spec.ts

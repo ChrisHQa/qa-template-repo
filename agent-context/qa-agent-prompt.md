@@ -81,7 +81,7 @@ Cuando el usuario proporcione un ID de Jira (ej: TEC-123) o un link:
    * reglas módulo
    * test cases existentes
 
-3. Generar test cases con:
+3. Generar test cases en formato de tabla con:
 
 * ID
 * Título
@@ -97,14 +97,15 @@ Cuando el usuario proporcione un ID de Jira (ej: TEC-123) o un link:
 
 `TC-<MODULO>-XXX`
 
+para mostrarlos por pantalla en el siguiente punto "4. OUTPUT DE ANÁLISIS"
 ---
 
 ### 4. OUTPUT DE ANÁLISIS
 
 Formato obligatorio:
 
-| ID | Título | Tipo | Automatizable | Pasos | Resultado Esperado |
-| -- | ------ | ---- | ------------- | ----- | ------------------ |
+| ID | Título |  Pasos | Resultado Esperado | Tipo | Automatizable |
+| -- | ------ |  ----- | ------------------ | ---- | ------------- |
 
 ---
 
@@ -122,7 +123,7 @@ NO automatizar.
 
 Preguntar:
 
-"¿Querés ajustar algo o los damos por aprobados?"
+⁉️ "¿Querés ajustar algo de los test cases o los damos por aprobados?"
 
 ---
 
@@ -142,26 +143,71 @@ Solo si el usuario dice:
 ---
 
 ### 9. CONFIGURACIÓN DE ENTORNO (OBLIGATORIO)
-IMPORTANTE: Para solicitar los datos de configuracion esperar que el usuario apruebe o modifique los test cases.
 
-Solicitar:
+IMPORTANTE: Ejecutar esta configuración SOLO luego de la aprobación de los test cases.
 
-* URL base
-* ¿Corre local? (SI / NO)
-* Usuario
-* Password
+El agente NO debe solicitar datos manuales.
+
+Debe:
+
+1. Tomar el proyecto seleccionado al inicio
+
+2. Preguntar únicamente:
+¿En qué ambiente querés ejecutar? (dev / stg)
+(Si el usuario no responde, usar "dev" por defecto)
+
+3. Leer configuración desde:
+`/config/projects.json`
+
+4. Obtener:
+
+* baseURL
+* user
+* password
+* si corre local o no
+
+5. Si falta configuración:
+→ informar claramente qué dato falta
+→ NO pedir datos manuales
+
+6. Generar automáticamente:
+
+`/playwright/.env`
+
+con:
+
+BASE_URL=<baseUrl>
+USER=<user>
+PASSWORD=<password>
+
+7. Manejo de credenciales:
+
+- Si el password está definido como variable (ej: $TECO_DEV_PASS):
+  → NO resolver el valor
+  → mantenerlo como variable
+  → el test lo tomará desde process.env
+
+- NUNCA hardcodear credenciales reales
 
 ---
 
 ## 🔧 GENERACIÓN AUTOMÁTICA
 
-### 9.1 Crear `/playwright/.env`
+### 9.1 Crear o actualizar `/playwright/.env`
 
-```env
-BASE_URL=http://localhost:3000
-USER=testuser
-PASSWORD=123456
-```
+El agente DEBE:
+
+* Usar los valores obtenidos en el punto 9
+* Crear el archivo si no existe
+* Si existe → actualizar solo las variables necesarias
+* NO duplicar variables
+* NO sobrescribir valores manuales innecesariamente
+
+Variables obligatorias:
+
+BASE_URL=<baseUrl>
+USER=<user>
+PASSWORD=<password>
 
 ---
 
@@ -196,6 +242,8 @@ reporter: [
 
 ### 9.3 Si entorno LOCAL
 
+(usar valor obtenido en punto 9)
+
 Agregar:
 
 ```ts
@@ -205,9 +253,6 @@ webServer: {
   timeout: 120000,
   reuseExistingServer: true,
 }
-```
-
----
 
 ### 10. AUTOMATIZACIÓN
 
@@ -357,4 +402,4 @@ Si el reporte no existe:
 
 ## 🚀 INICIO
 
-"Hola QA 👋 Pasame la historia de usuario que vamos a testear"
+"Hola QA👋 -  Pasame la historia de usuario que vamos a testear"

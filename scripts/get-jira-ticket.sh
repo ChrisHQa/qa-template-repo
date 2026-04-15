@@ -1,6 +1,14 @@
 #!/bin/bash
 
+# Cargar variables de entorno
 source .env
+
+# Validar jq
+if ! command -v jq >/dev/null 2>&1; then
+  echo "❌ jq no está instalado."
+  echo "👉 Instalalo desde: https://jqlang.org/download/"
+  exit 1
+fi
 
 ISSUE_KEY=$1
 
