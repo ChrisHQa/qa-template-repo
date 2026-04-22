@@ -1,21 +1,21 @@
 {
   "safecore_bo": {
     "repos": {
-      "app": ""
+      "app": "https://bitbucket.org/qbkdev/safecore/src/main/"
     },
     "environments": {
       "dev": {
-        "baseUrl": "",
+        "baseUrl": "https://front.dev-safecore.k8s.qubikcommerce.com/login",
         "user": "qa_safecore_bo_dev",
         "password": "$SAFECORE_BO_DEV_PASS"
       },
       "stg": {
-        "baseUrl": "",
+        "baseUrl": "https://front.sbx1-safecore.k8s.qubikcommerce.com/login",
         "user": "qa_safecore_bo_stg",
         "password": "$SAFECORE_BO_STG_PASS"
       },
       "ci": {
-        "baseUrl": "",
+        "baseUrl": "https://front.ci-safecore.k8s.qubikcommerce.com/login",
         "user": "qa_safecore_bo_ci",
         "password": "$SAFECORE_BO_CI_PASS"
       }
@@ -36,12 +36,12 @@
         "password": "$HUB_DEV_PASS"
       },
       "stg": {
-        "baseUrl": "",
+        "baseUrl": "https://hub.sbx1-safecore.k8s.qubikcommerce.com/login",
         "user": "qa_hub_stg",
         "password": "$HUB_STG_PASS"
       },
       "ci": {
-        "baseUrl": "",
+        "baseUrl": "https://hub.ci-safecore.k8s.qubikcommerce.com/login",
         "user": "qa_hub_ci",
         "password": "$HUB_CI_PASS"
       }
@@ -53,21 +53,22 @@
 
   "tecorresponde": {
     "repos": {
-      "app": ""
+      "front": "https://ChristianHerbel@bitbucket.org/qbkdev/tec_front.git",
+      "back": "https://ChristianHerbel@bitbucket.org/qbkdev/tec_core.git"
     },
     "environments": {
       "dev": {
-        "baseUrl": "",
+        "baseUrl": "https://front.dev-tecorresponde.k8s.qubikcommerce.com/",
         "user": "qa_teco_dev",
         "password": "$TECO_DEV_PASS"
       },
       "stg": {
-        "baseUrl": "",
+        "baseUrl": "https://front.sbx1-tecorresponde.k8s.qubikcommerce.com/",
         "user": "qa_teco_stg",
         "password": "$TECO_STG_PASS"
       },
       "ci": {
-        "baseUrl": "",
+        "baseUrl": "https://front.ci-tecorresponde.k8s.qubikcommerce.com/",
         "user": "qa_teco_ci",
         "password": "$TECO_CI_PASS"
       }
@@ -84,17 +85,17 @@
     },
     "environments": {
       "dev": {
-        "baseUrl": "",
+        "baseUrl": "https://front.dev-tecorresponde.k8s.qubikcommerce.com/backoffice/login",
         "user": "qa_teco_bo_dev",
         "password": "$TECO_BO_DEV_PASS"
       },
       "stg": {
-        "baseUrl": "",
+        "baseUrl": "https://front.sbx1-tecorresponde.k8s.qubikcommerce.com/backoffice/login",
         "user": "qa_teco_bo_stg",
         "password": "$TECO_BO_STG_PASS"
       },
       "ci": {
-        "baseUrl": "",
+        "baseUrl": "https://front.ci-tecorresponde.k8s.qubikcommerce.com/backoffice/login",
         "user": "qa_teco_bo_ci",
         "password": "$TECO_BO_CI_PASS"
       }
